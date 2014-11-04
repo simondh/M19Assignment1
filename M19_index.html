@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+    <title>M19 Integrated System Design</title>
+    <link rel="stylesheet" type="text/css" href="resources/WHD.css" media="all"> 
+    <link rel="stylesheet" type="text/css" href="resources/jquery.svg.css">
+    <script type="text/javascript" src="resources/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="resources/jquery.svg.js"></script>
+	<script type="text/javascript" src="resources/jquery-ui.min.js"></script>    
+    <script type="text/javascript" src="resources/d3.v3.min.js" charset="utf-8" type="text/javascript">
+</script>
+    <link rel="stylesheet" type="text/css" href="resources/M19.css" media="all">
+</head>
+
+<body>
+    <header>
+        <img src="resources/whiteHorse.jpeg" alt="Uffington White Horse" style="width:285px;height:177px">
+
+        <h1>M19 Integrated System Design</h1>
+
+        <nav><a class="homeButton" href="/index.html">Home</a></nav>
+    </header>
+
+    <h2>Coursework 1 - Evaluation  and state model analysis of a real world device </h2>
+    <h4>This is a model of the gear mechanism of a 6 speed Brompton folding bicycle</h4>
+    <div>
+	    The Brompton is a popular bicycle used for commuting and lightweight cycle touring. 
+	    It is popular as it folds very small, and can be taken onto a plane as a standard suitcase.<br/>
+	    The gears are a little idiosyncratic as it has both a three speed hub gear and a two speed derailleur.
+	    It is a feature of hub gears that they cannot be changed while pedalling, while derailleur are the opposite, and can only be changed while pedalling. The gears are arranged so that the 2-speed derailleur 'splits' the wide ratio 3 speed hub. This gives 6 well spaced gears and quite a good range, but changing gears is a bit of an art - give it a go!
+	        </div>
+    
+    <img id="flashStop" src="resources/stop.jpeg" alt="Stop!" width="170" height="170">
+    
+    
+    <!DOCTYPE svg PUBLIC "-//M19.cssW3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<?xml-stylesheet href="M19.css" type="text/css"?>
+		
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="724" height="660" viewBox="0, 0, 724, 660">
+
+ <defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refx="5" refy="5">
+        <circle cx="5" cy="5" r="5" style="stroke: none; fill:#000000;"/>
+    </marker>
+
+    <marker id="markerArrow" markerWidth="10" markerHeight="10" refX="20" refY="5.5"
+           orient="auto">
+        <path d="M0,0 l0,10 l10,-5 z" style="fill: #000000;" />
+    </marker>
+</defs>
+		
+  <g id="StateMachine">
+	
+		<g id="stateTransitions" stroke="black" stroke-width="1" fill="none" style="marker-end: url(#markerArrow);" >
+		<desc> all State Transition lines </desc>
+			<g id = "hub-transitions">
+				<g id ="hub-pedal">
+					<g id="hub-down">
+						<path id="NP_DN_6" class="normalLine" d="M 100,100 q -55,75 0,150"/> 
+						<path id="NP_DN_4" class="normalLine" d="M 100,250 q -55,75 0,150"/> 
+						<path id="NP_DN_5" class="normalLine" d="M 100,175 q -55,75 0,150"/> 
+						<path id="NP_DN_3" class="normalLine" d="M 100,325 q -55,75 0,150"/>
+					</g>
+					<g id="hub-up">
+						<path id="NP_UP_1" class="normalLine" d="M 100,475 q 55,-75 0,-150"/> 
+						<path id="NP_UP_3" class="normalLine" d="M 100,325 q 55,-75 0,-150"/> 
+						<path id="NP_UP_2" class="normalLine" d="M 100,400 q 55,-75 0,-150"/> 
+						<path id="NP_UP_4" class="normalLine" d="M 100,250 q 55,-75 0,-150"/>
+					</g>
+				</g>
+			</g>
+			
+			<g id="derr-transitions">
+				<g id = "derr-down">
+					<path  id="P_DN_6" class="normalLine" d="M300, 100 q -40,37.5 0, 75" />
+					<path  id="P_DN_4" class="normalLine" d="M300, 250 q -40,37.5 0, 75" />
+					<path  id="P_DN_2" class="normalLine" d="M300, 400 q -40,37.5 0, 75" />
+				</g>
+				<g id = "derr-up">
+					<path  id="P_UP_1" class="normalLine" d="M300, 475 q 40,-37.5 0, -75" />
+					<path  id="P_UP_3" class="normalLine" d="M300, 325 q 40,-37.5 0, -75" />
+					<path  id="P_UP_5" class="normalLine" d="M300, 175 q 40,-37.5 0, -75" />
+				</g>
+			</g>
+
+			<g id="pedal-transitions">
+				<path  id="P_ON_6" class="normalLine"d="M 100,100 q 100,-45 200,0" />
+				<path  id="P_OFF_6" class="normalLine"d="M 300,100 q -100,45 -200,0" />
+
+				<path  id="P_ON_5" class="normalLine"d="M 100,175 q 100,-45 200,0" />
+				<path  id="P_OFF_5" class="normalLine"d="M 300,175 q -100,45 -200,0" />
+
+				<path  id="P_ON_4" class="normalLine"d="M 100,250 q 100,-45 200,0" />
+				<path  id="P_OFF_4" class="normalLine"d="M 300,250 q -100,45 -200,0" />	
+
+				<path  id="P_ON_3" class="normalLine"d="M 100,325 q 100,-45 200,0" />
+				<path  id="P_OFF_3" class="normalLine"d="M 300,325 q -100,45 -200,0" />
+
+				<path  id="P_ON_2" class="normalLine"d="M 100,400 q 100,-45 200,0" />
+				<path  id="P_OFF_2" class="normalLine"d="M 300,400 q -100,45 -200,0" />				
+
+				<path  id="P_ON_1" class="normalLine"d="M 100,475 q 100,-45 200,0" />
+				<path  id="P_OFF_1" class="normalLine"d="M 300,475 q -100,45 -200,0" />				
+				
+			</g>
+			
+		</g>
+		
+		<g id="stateCircles" stroke="black" stroke-width="3" fill="grey" >
+		  <desc>Two columns of 6 state circles</desc>
+		  <desc>Individual IDs allow class changes to alter display</desc>
+		  <circle class="stateCircle stateCircleLeft" id="NP6" cx="100" cy="100" r="10"/>
+		  <circle class="stateCircle stateCircleLeft" id="NP5" cx="100" cy="175" r="10"/>
+		  <circle class="stateCircle stateCircleLeft" id="NP4" cx="100" cy="250" r="10"/>
+		  <circle class="stateCircle stateCircleLeft" id="NP3" cx="100" cy="325" r="10"/>
+		  <circle class="stateCircle stateCircleLeft" id="NP2" cx="100" cy="400" r="10"/>
+		  <circle class="stateCircle stateCircleLeft" id="NP1" cx="100" cy="475" r="10"/>
+		  <circle class="stateCircle stateCircleRight" id="P6" cx="300" cy="100" r="10"/>
+		  <circle class="stateCircle stateCircleRight" id="P5" cx="300" cy="175" r="10"/>
+		  <circle class="stateCircle stateCircleRight" id="P4" cx="300" cy="250" r="10"/>
+		  <circle class="stateCircle stateCircleRight" id="P3" cx="300" cy="325" r="10"/>
+		  <circle class="stateCircle stateCircleRight" id="P2" cx="300" cy="400" r="10"/>
+		  <circle class="stateCircle stateCircleRight" id="P1" cx="300" cy="475" r="10"/>	
+		  <text x="95" y="106" class="gearNum">6</text>
+		  <text x="95" y="181" class="gearNum">5</text>
+		  <text x="95" y="256" class="gearNum">4</text>
+		  <text x="95" y="331" class="gearNum">3</text>
+		  <text x="95" y="406" class="gearNum">2</text>
+		  <text x="95" y="481" class="gearNum">1</text>
+		  <text x="295" y="106" class="gearNum">6</text>
+		  <text x="295" y="181" class="gearNum">5</text>
+		  <text x="295" y="256" class="gearNum">4</text>
+		  <text x="295" y="331" class="gearNum">3</text>
+		  <text x="295" y="406" class="gearNum">2</text>
+		  <text x="295" y="481" class="gearNum">1</text>
+
+			<g  class="pedallingText" >
+				<text id="PedONtxt"  class="pedallingONtxt"  x="300" y="70"><tspan>Pedalling</tspan></text>
+				<text id="PedOFFtxt" class="pedallingOFFtxt" x="100" y="70"><tspan>Not Pedalling</tspan></text>
+			</g>
+		</g>
+		
+		
+		<g id="threeSpeedLever" >
+			<desc> my three-speed gear change </desc>
+			<g id="threeSpeedDown">
+				<path  d="M400, 354 l20, -40 l-40, 0 z"  />
+			</g>
+			<g id="threeSpeedUp">
+				<path  d="M400, 228 l20, 40 l-40, 0 z"  />
+			</g>
+			<g id="threeSpeedIndicator">
+				<path d="M381, 310, l38, 0 l0, -38, l-38,0 z"/>
+			</g>
+			<g class="gearText" >
+				<text x="400" y="296"><tspan id="threeSpeedTxt">1</tspan></text>
+			</g>
+			
+			<g  class="gearText" >
+				<text x="395" y="220">Three Speed</text>
+			</g>
+			
+		</g>
+		
+		<g id="twoSpeedLever" >
+			<desc> my two-speed gear change </desc>
+			<g id="twoSpeedDown">
+				<path  d="M500, 354 l20, -40 l-40, 0 z"  />
+			</g>
+			<g id="twoSpeedUp">
+				<path  d="M500, 228 l20, 40 l-40, 0 z"  />
+			</g>
+			<g id="twoSpeedIndicator">
+				<path d="M481, 310, l38, 0 l0, -38, l-38,0 z"/>
+			</g>
+			<g class="gearText" >
+				<text x="500" y="296"><tspan id="twoSpeedTxt">1</tspan></text>
+			</g>
+			<g  class="gearText" >
+				<text x="500" y="220">Two Speed</text>
+			</g>
+			
+		</g>
+		
+		<g>
+			<desc> pedalling on/off button </desc>
+			<circle class="pedallingOFF"  id="PedOFF"  cx="440" cy="291" r="20"/>	
+			<circle class="pedallingON" id="PedON" cx="460" cy="291" r="20"/>	
+			<line x1="440" y1="271" x2="460" y2="271" style="stroke:grey;stroke-width:2" />
+			<line x1="440" y1="311" x2="460" y2="311" style="stroke:grey;stroke-width:2" />
+			<g  class="gearText" >
+				<text x="450" y="330">Pedalling</text>
+				<text x="450" y="343">Off/On</text>
+			</g>
+
+		</g>
+
+<image xlink:href="resources/crankMaster.jpeg" x="340" y="340" height="325px" width="325px"/>
+		
+  </g>
+</svg>
+
+
+
+
+    
+    
+    <script type="text/javascript">
+
+	/*
+	 * .addClassSVG(className)
+	 * Adds the specified class(es) to each of the set of matched SVG elements.
+	 thanks to Sagar Gala, http://stackoverflow.com/questions/8638621/jquery-svg-why-cant-i-addclass
+	 */
+	$.fn.addClassSVG = function(className){
+	    $(this).attr('class', function(index, existingClassNames) {
+	        return existingClassNames + ' ' + className;
+	    });
+	    return this;
+	};
+	
+	/*
+	 * .removeClassSVG(className)
+	 * Removes the specified class to each of the set of matched SVG elements.
+	 */
+	$.fn.removeClassSVG = function(className){
+	    $(this).attr('class', function(index, existingClassNames) {
+	        var re = new RegExp(className, 'g');
+	        return existingClassNames.replace(re, '');
+	    });
+	    return this;
+	};
+	
+	function swapClasses (ID, turnOFF, turnON)
+	{
+		$(ID).removeClassSVG(turnOFF);
+		$(ID).addClassSVG(turnON);	
+	}
+
+
+	// global state data
+	var gearState = {threeSpd : 1, twoSpd: 1, pedalling: true};
+
+
+	// Gear change button functions
+	
+	function do3Down()
+	{
+		if ((gearState.threeSpd == 1) || (gearState.pedalling)) {
+			//console.log ("Already 1 or pedalling, cannot action Down");
+			flashStop ()
+		} else {
+			var gear = getCurrentGear();
+			var idName = "#NP" + gear;
+			$(idName).removeClassSVG("activeState");
+			gearState.threeSpd --;
+			idName = "#NP" + getCurrentGear();
+			$(idName).addClassSVG("activeState");
+			idName = "" + gearState.threeSpd;  // get "x" as string
+			$("#threeSpeedTxt").text(idName);
+			flashLine ("#NP_DN_" + gear);
+		}
+	}
+
+	function do3Up()
+	{
+		if ((gearState.threeSpd == 3) || (gearState.pedalling)) {
+			//console.log ("Already 3 or pedalling, cannot action Up");
+			flashStop();
+		} else {
+			var gear = getCurrentGear();
+			var idName = "#NP" + gear;
+			$(idName).removeClassSVG("activeState");
+			gearState.threeSpd ++;
+			idName = "#NP" + getCurrentGear();
+			$(idName).addClassSVG("activeState");
+			idName = "" + gearState.threeSpd;  // get "x" as string
+			$("#threeSpeedTxt").text(idName);
+			flashLine ("#NP_UP_" + gear);
+		}
+	}
+	
+	function do2Up()
+	{
+		if ((gearState.twoSpd == 2) || (!gearState.pedalling)) {
+			//console.log ("Already 2 or pedalling, cannot action Up");
+			flashStop();
+		} else {
+			var gear = getCurrentGear();
+			var idName = "#P" + gear;
+			$(idName).removeClassSVG("activeState");
+			gearState.twoSpd ++;
+			idName = "#P" + getCurrentGear();
+			$(idName).addClassSVG("activeState");
+			idName = "" + gearState.twoSpd;  // get "x" as string
+			$("#twoSpeedTxt").text(idName);
+			flashLine ("#P_UP_" + gear);
+		}
+	}
+	
+		function do2Down()
+	{
+		if ((gearState.twoSpd == 1) || (!gearState.pedalling)) {
+			//console.log ("Already 1 or pedalling, cannot action Down");
+			flashStop();
+		} else {
+			var gear = getCurrentGear();
+			var idName = "#P" + gear;
+			$(idName).removeClassSVG("activeState");
+			gearState.twoSpd --;
+			idName = "#P" + getCurrentGear();
+			$(idName).addClassSVG("activeState");
+			idName = "" + gearState.twoSpd;  // get "x" as string
+			$("#twoSpeedTxt").text(idName);
+			flashLine ("#P_DN_" + gear);
+		}
+	}
+
+
+
+	function togglePedal ()
+	{
+		var gear = getCurrentGear();
+		if (gearState.pedalling) {
+			// change from pedalling to NOT pedalling
+			swapClasses ("#PedON", "pedallingON", "pedallingOFF");
+			swapClasses ("#PedOFF", "pedallingOFF", "pedallingON");
+			swapClasses ("#PedONtxt", "pedallingONtxt", "pedallingOFFtxt");
+			swapClasses ("#PedOFFtxt", "pedallingOFFtxt", "pedallingONtxt");
+			var idName = "#P" + gear;
+			$(idName).removeClassSVG("activeState");
+			var idName = "#NP" + gear;
+			$(idName).addClassSVG("activeState");
+			flashLine ("#P_OFF_" + gear);
+			$('.crankRotate').hide();
+			$('.crankStill').show();
+		} else {
+			// from NOT to pedalling
+			swapClasses ("#PedOFF", "pedallingON", "pedallingOFF");
+			swapClasses ("#PedON", "pedallingOFF", "pedallingON");
+			swapClasses ("#PedOFFtxt", "pedallingONtxt", "pedallingOFFtxt");
+			swapClasses ("#PedONtxt", "pedallingOFFtxt", "pedallingONtxt");
+			var idName = "#P" + getCurrentGear();
+			$(idName).addClassSVG("activeState");
+			var idName = "#NP" + getCurrentGear();
+			$(idName).removeClassSVG("activeState");
+			flashLine ("#P_ON_" + gear);
+			$('.crankRotate').show();
+			//$('.crankStill').hide();
+
+			}
+		gearState.pedalling = !gearState.pedalling;
+	}
+	
+	
+	function flashStop ()
+	{
+		$("#flashStop").fadeIn("220", function () {
+			$("#flashStop").fadeOut("900");});
+	}
+	
+	function flashLine (id)
+	{
+		console.log ("ID: ", id);
+		$(id).addClassSVG("flashLine");
+		timeoutID = window.setTimeout(function () {$(id).removeClassSVG("flashLine");} , 500);
+	}
+	
+	function getCurrentGear()
+	{
+		// returns 1..6 based on 2 and 3 speed controllers, in gearState
+		var g = ((gearState.threeSpd * 2) - 1);
+		if (gearState.twoSpd == 2) g++;
+		return g;
+	}
+
+
+	// Gear change button click actions
+	
+	$("#threeSpeedDown").on("click",do3Down);
+	$("#threeSpeedUp").on("click",do3Up);
+	$("#twoSpeedUp").on("click", do2Up);
+	$("#twoSpeedDown").on("click", do2Down);
+	$("#PedON").on("click",togglePedal);
+	$("#PedOFF").on("click",togglePedal);
+	
+
+	// start in gear 1
+	jQuery("#P1").addClassSVG("activeState");
+	
+	
+		
+		
+
+    </script>
+    
+    <div class="endText">
+HINTS: The green triangles change the gears up or down, but the red/white Pedalling control must be in the right state for the gears you want to change.
+<p/>
+Find out more about these fun bikes: <a href="http://brompton.com/" target="_blank">  Brompton&copy; </a>
+
+    </div>
+	<hr style="border-top: dotted 1px;" />    <div class="Me">
+	    Simon Hewitt&copy;, Swansea University MSc 2014, student number 806068
+    </div>
+    
+</body>
+</html>

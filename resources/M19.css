@@ -1,0 +1,190 @@
+@CHARSET "utf-8";
+
+
+.stateGroup {
+	fill: red;
+	stroke: blue;
+	stroke-width  : 2;
+}
+
+#stateMap {
+	width: 700px;
+	height: 700px;
+	border: black;
+	border-radius: 25px;
+}
+
+.gearText {
+	stroke: none;
+	font-size: 12pt;
+	color: silver;
+	fill: black;
+	text-anchor: middle;
+}
+
+.pedallingText {
+	stroke: none;
+	font-size: 14pt;
+	color: silver;
+	fill: black;
+	text-anchor: middle;
+	font-weight: bold;
+}
+
+.pedallingON {
+	fill: #FF0000;
+	stroke: blue;
+	stroke-width: 2px;
+	}
+	
+.pedallingOFF {
+	fill: #fefefe; /* would like fill:none but then can't click it! */
+	stroke: grey;
+	stroke-width: 2px;
+	}
+	
+.pedallingONtxt {
+	stroke:red;
+	stroke-width: 1px;
+	}
+	
+.pedallingOFFtxt {
+	stroke:grey;
+	stroke-width: 1px;
+	}
+	
+
+.stateCircle {
+	color: black;
+	background-color: steelblue;
+
+}
+
+.stateCircleLeft {
+	fill:aqua;
+}
+
+.stateCircleRight {
+	fill:#69C942;
+}
+
+.activeState {
+	stroke: #DE0707;
+	stroke-width: 7px;
+}
+
+/* Three speed controller */
+
+#threeSpeedDown {
+	fill: green;
+	stroke: red;
+}
+
+#threeSpeedUp {
+	fill: green;
+	stroke: red;
+}
+
+#threeSpeedLever
+{
+	stroke: blue;
+	stroke-width: 1px;
+}
+
+#threeSpeedIndicator
+{
+	fill: none;
+	stroke: blue;
+	stroke-width: 3px;
+}
+
+#threeSpeedTxt
+{
+	font-weight: bold;
+	   position: absolute;
+    left: 400px;
+    top: 500px;
+}
+
+/* Two speed controller */
+
+
+#twoSpeedLever
+{
+	stroke: blue;
+	stroke-width: 1px;
+}
+
+#twoSpeedDown {
+	fill: green;
+	stroke: red;
+}
+
+#twoSpeedUp {
+	fill: green;
+	stroke: red;
+}
+
+
+#twoSpeedIndicator
+{
+	fill: none;
+	
+	stroke: blue;
+	stroke-width: 3px;
+}
+
+#twoSpeedTxt
+{
+	font-weight: bold;
+}
+
+#flashStop {
+	position: fixed;
+    top: 886px;
+    left: 380px;
+display: none;
+}
+
+.flashLine {
+	stroke: red;
+	stroke-width:7px;
+	color:red;
+}
+
+
+
+.normalLine {
+	
+}
+
+.gearNum {
+	stroke: grey;
+	stroke-width: 0.5px;
+	font-size: 19px;
+}
+
+.crankRotate {
+	visibility: hidden;
+	position: absolute;
+	top: 820px;
+	left: 370px;
+}
+
+.crankStill {
+	visibility:  visible;
+	position:relative;
+	top: 80px;
+	left: 30px;
+}
+
+.endText {
+	position:relative;
+
+	margin: 20px;
+}
+
+.Me {
+	color:grey;
+	margin: 20px;
+}

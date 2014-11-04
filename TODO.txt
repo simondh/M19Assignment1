@@ -1,0 +1,4 @@
+1) Change to use local files rather than CDN, so it can be shipped in a ZIP and does not need internet.
+2) Get Stop to centre over the crank consistently?
+3) My name?
+4) Add Download link! - (or GitHub) - do that. a) tidy up, 2 )add github
