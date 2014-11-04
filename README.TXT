@@ -2,6 +2,7 @@ This is my coursework for
 M19 Interactive System Design, Swansea University Computer Science MSc course
 Simon Hewitt, 806068
 7/11/14
+Lecturer Patrick Oladimeji
 
 21 files, from Git commit:
  create mode 100644 Brompton.pdf
